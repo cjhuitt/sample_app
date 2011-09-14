@@ -86,4 +86,14 @@ describe User do
 
   end
 
+  describe "password encryption" do
+    before (:each) do
+      @use = user.create!(@attr)
+    end
+
+    it "should have an encrypted password attribute" do
+      @user.should respond_to(:encrypted_password)
+    end
+  end
+
 end
