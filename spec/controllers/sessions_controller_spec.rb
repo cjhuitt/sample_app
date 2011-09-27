@@ -40,13 +40,14 @@ describe SessionsController do
     describe "with valid email and password" do
       before(:each) do
         @user = Factory(:user)
-        @attr = { :email => @user.email, 
+        @attr = { :email => @user.email,
                   :password => @user.password }
       end
 
       it "should sign the user in" do
         post :create, :session => @attr
-        # Fil in with tests for a signed-in user.
+        controller.current_user.should == @user
+        controller.should be_signed_in
       end
 
       it "should redirect to the user show page" do
